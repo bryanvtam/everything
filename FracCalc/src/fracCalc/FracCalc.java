@@ -18,7 +18,7 @@ public class FracCalc {
     		
     	}
     	
-
+    	userinput.close();
     }
 
     
