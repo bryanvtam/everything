@@ -7,14 +7,12 @@ public class FracCalc {
     {
         // TODO: Read the input from the user and call produceAnswer with an equation
     	Scanner userinput = new Scanner(System.in);
-    	boolean condition = false;
-    	while (condition == false) {
+    	System.out.println("Please give a an expression:");
+    	String holder = (userinput.nextLine());
+    	while (!holder.toUpperCase().equals("QUIT")) {
+    		System.out.println(produceAnswer(holder));
     		System.out.println("Please give a an expression:");
-    		produceAnswer(userinput.nextLine());
-    		String start = ((userinput.nextLine()).toUpperCase());
-    		condition = (start.equals("QUIT"));
-    		String[] holder = (start.split(" "));
-    		System.out.println(Arrays.toString(holder));
+    		holder = (userinput.nextLine());
     		
     	}
     	
@@ -33,10 +31,21 @@ public class FracCalc {
     public static String produceAnswer(String input)
     { 
         // TODO: Implement this function to produce the solution to the input
+        String operand1 = (input.split(" "))[0];
+        String operation = (input.split(" "))[1];
+        String operand2 = (input.split(" "))[2];
+        String wholenumop1 = (operand1.split("_"))[0];
+        String wholenumop2 = (operand2.split("_"))[0];
         
-        return "";
+        return (operand2);
     }
 
     // TODO: Fill in the space below with any helper methods that you think you will need
+    public static int operan1 (String frac1) {
+    	return 1;
+    }
     
+    public static int operan2 (String frac2) {
+    	return 1;
+    }
 }
