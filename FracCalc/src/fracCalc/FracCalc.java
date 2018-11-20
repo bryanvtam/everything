@@ -7,12 +7,11 @@ public class FracCalc {
     {
         // TODO: Read the input from the user and call produceAnswer with an equation
     	Scanner userinput = new Scanner(System.in);
-    	System.out.println("Please give a an expression:");
-    	String holder = (userinput.nextLine());
+    	String holder = ("");
     	while (!holder.toUpperCase().equals("QUIT")) {
-    		System.out.println(produceAnswer(holder));
     		System.out.println("Please give a an expression:");
     		holder = (userinput.nextLine());
+    		System.out.println(produceAnswer(holder));
     		
     	}
     	
