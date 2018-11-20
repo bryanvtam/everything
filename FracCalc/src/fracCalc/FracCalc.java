@@ -14,7 +14,6 @@ public class FracCalc {
     		System.out.println(produceAnswer(holder));
     		
     	}
-    	
     	userinput.close();
     }
 
