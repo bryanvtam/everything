@@ -35,24 +35,24 @@ public class FracCalc {
         String wholenum2 = "0";
         String numerator2 = "0";
         String denominator2 = "1";
-        int condition = (operand2.length());
-        if (condition == 3) {
-        	numerator2 = operand2.split("/")[0];
-        	denominator = operand2.split("/")[1];
-        }
-        else if (condition = 5) {
+        int condition1 = operand2.indexOf("_");
+        int condition2 = operand2.indexOf("/");
+        if (condition1 > -1) {
         	wholenum2 = operand2.split("_")[0];
-        	numerator2 = (operand2.split("_")[1]).split("/"))[0];
+        	numerator2 = (operand2.split("_")[1]).split("/")[0];
+        	denominator2 = (operand2.split("_")[1]).split("/")[1];
         }
-        System.out.println((input.split(" "))[3]);
-        //String wholenum2 = (operand2.split("_"))[0];
-        //String numerator2 = (operand2.split("_")[1]).split("/")[0];
-        //String denominator2 = (wholenum2.split("_")[1]).split("/")[1];
         
-        return "";
-        //return ("whole:"+ wholenum2 + " numerator:" + numerator2 + " denominator:" + denominator2);
+        else {
+        	if(condition2 > -1) {
+         		numerator2 = operand2.split("/")[0];
+        		denominator2 = operand2.split("/")[1];
+        	}
+        	else {
+        		wholenum2 = operand2;
+        	}
+        }
+        return ("whole:"+ wholenum2 + " numerator:" + numerator2 + " denominator:" + denominator2);
     }
-
     // TODO: Fill in the space below with any helper methods that you think you will need
-
 }
