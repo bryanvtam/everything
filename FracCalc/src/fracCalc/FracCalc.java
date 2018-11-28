@@ -40,10 +40,10 @@ public class FracCalc {
         int numerator2 = 0;
         int denominator2 = 1;
         
-        //Seperating the fraction of operand1
+        //SEPERATES OPERAND1 INTO WHOLEN NUMBER, NUMERATOR, AND DENOMINATOR
         if (operand1.contains("_")) {
         	wholenum1 = Integer.parseInt(operand1.split("_")[0]);
-        	numerator1 = Integer.parseInt((operand1.split("_")[1]).split("/")[0]);
+        	numerator1 = ((Integer.parseInt((operand1.split("_")[1]).split("/")[0]))*wholenum1);
         	denominator1 = Integer.parseInt((operand1.split("_")[1]).split("/")[1]);
         }
         else if (operand1.contains("/")) {
@@ -53,12 +53,11 @@ public class FracCalc {
         else {
         	wholenum1 = Integer.parseInt(operand1);
         }
-        System.out.println("whole:"+ wholenum1 + " numerator:" + numerator1 + " denominator:" + denominator1);
         
-        //Seperating the fraction of operand2
+        //SEPERATES OPERAND2 INTO WHOLEN NUMBER, NUMERATOR, AND DENOMINATOR
         if (operand2.contains("_")) {
         	wholenum2 = Integer.parseInt(operand2.split("_")[0]);
-        	numerator2 = Integer.parseInt((operand2.split("_")[1]).split("/")[0]);
+        	numerator2 = Integer.parseInt((operand2.split("_")[1]).split("/")[0]); //multiply by wholenum3 for checkpoint3
         	denominator2 = Integer.parseInt((operand2.split("_")[1]).split("/")[1]);
         }
         else if (operand2.contains("/")) {
@@ -69,8 +68,72 @@ public class FracCalc {
         	wholenum2 = Integer.parseInt(operand2);
         }
         
+        /*
+        int m1 = 2;
+        int m2 = 2;
+        while(((denominator1*m1)%denominator2)!= 0) {
+        	m1+=1;
+        }
+        m2 = ((denominator1*m1)/denominator2);
+        numerator1 = numerator1*m1;*/
+        
         return ("whole:"+ wholenum2 + " numerator:" + numerator2 + " denominator:" + denominator2);
     }
     // TODO: Fill in the space below with any helper methods that you think you will need
-
+    public static String addition (int numerator1, int numerator2,int denominator1, int denominator2) {
+    	int m1 =(lcm(denominator1,denominator2))/denominator1;
+    	int m2 =(lcm(denominator1,denominator2))/denominator2;
+    	int newnumerator = ((numerator1*m1)+(numerator2*m2));
+    	return (newnumerator + "/" + (lcm(denominator1,denominator2)));
+    }
+    
+    public static String subtraction (int numerator1, int numerator2,int denominator1, int denominator2) {
+    	int m1 =(lcm(denominator1,denominator2))/denominator1;
+    	int m2 =(lcm(denominator1,denominator2))/denominator2;
+    	int newnumerator = ((numerator1*m1)-(numerator2*m2));
+    	return (newnumerator + "/" + (lcm(denominator1,denominator2)));
+    }
+    
+    public static String multiplication (int numerator1, int numerator2, int denominator1, int denominator2) {
+    	int newnumerator = numerator1*numerator2;
+    	int newdenominator = denominator1*denominator2;
+    	return (newnumerator + "/" + newdenominator);
+    }
+    
+    public static String division (int numerator1, int numerator2, int denominator1, int denominator2) {
+    	int newnumerator = numerator1*denominator2;
+    	int newdenominator = denominator1*numerator2;
+    	return (newnumerator + "/" + newdenominator);
+    }
+    
+    public static int lcm(int denominator1, int denominator2) {
+    	int multiply = 2;
+    	while((denominator1*multiply)%denominator2 !=0) {
+    		multiply++;
+    	}
+    	return (denominator1*multiply);
+    }
+    
+    public static String reduce(String input) {	
+    	int numerator = (Integer.parseInt(input.split("/")[0]));
+    	int denominator = (Integer.parseInt(input.split("/")[1]));
+    	int gcd = gcd(numerator, denominator);
+    	
+    	return((numerator/gcd) + "/" + (denominator/gcd));
+    }
+    
+    public static int gcd(int a, int b) {
+    	if(b == 0) {
+    		return a;
+    	}
+    	return gcd(b, a%b);
+    }
+    
+    public static String toMix (String input) {
+    	int newnumerator = Integer.parseInt(input.split("/")[0]);
+    	int newdenominator = Integer.parseInt(input.split("/")[1]);
+    	int wholenum = (newnumerator/newdenominator);
+    	int remainder = (newnumerator%newdenominator);
+    	return ( wholenum + "_" + remainder +"/" + newdenominator);
+    }
 }
