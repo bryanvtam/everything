@@ -67,9 +67,10 @@ public class FracCalc {
         else {
         	wholenum2 = Integer.parseInt(operand2);
         }
-        
+       
+       //CHECK AND CHOOSE OPERATIONS
        if (operation.equals("+")){
-    		   
+    	   answer = (addition(numerator1,numerator2,denominator1,denominator2));
        }
        else if(operation.equals("-")) {
     	   
