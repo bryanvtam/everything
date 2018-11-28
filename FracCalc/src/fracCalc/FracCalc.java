@@ -39,26 +39,44 @@ public class FracCalc {
         int wholenum2 = 0;
         int numerator2 = 0;
         int denominator2 = 1;
+        int[] frac1 = {numerator1,denominator1};
+        int[] frac2 = {numerator2, denominator2};
         String answer = "";
         //SEPERATES OPERAND1 INTO WHOLEN NUMBER, NUMERATOR, AND DENOMINATOR
         if (operand1.contains("_")) {
         	wholenum1 = Integer.parseInt(operand1.split("_")[0]);
-        	numerator1 = ((Integer.parseInt((operand1.split("_")[1]).split("/")[0]))*wholenum1);
         	denominator1 = Integer.parseInt((operand1.split("_")[1]).split("/")[1]);
+        	if (wholenum1 > 0) {
+        		numerator1 = (((Integer.parseInt((operand1.split("_")[1]).split("/")[0]))) + (denominator1)*wholenum1); 
+        	}
+        	else if (wholenum1 < 0) {
+        		numerator1 = (((denominator1)*wholenum1)-((Integer.parseInt((operand1.split("_")[1]).split("/")[0])))); 
+        		
+        	}
+        	frac1[0] = numerator1;
         }
         else if (operand1.contains("/")) {
         	numerator1 = Integer.parseInt(operand1.split("/")[0]);
     		denominator1 = Integer.parseInt(operand1.split("/")[1]);
         }
         else {
+        	numerator1 = Integer.parseInt(operand1);
         	wholenum1 = Integer.parseInt(operand1);
         }
         
         //SEPERATES OPERAND2 INTO WHOLEN NUMBER, NUMERATOR, AND DENOMINATOR
         if (operand2.contains("_")) {
         	wholenum2 = Integer.parseInt(operand2.split("_")[0]);
-        	numerator2 = Integer.parseInt((operand2.split("_")[1]).split("/")[0]); //multiply by wholenum3 for checkpoint3
         	denominator2 = Integer.parseInt((operand2.split("_")[1]).split("/")[1]);
+        	if (wholenum2 > 0) {
+        		numerator2 = (((Integer.parseInt((operand2.split("_")[1]).split("/")[0]))) + (denominator2)*wholenum2); 
+        	}
+        	else if (wholenum2 < 0) {
+        		numerator2 = (((denominator2)*wholenum2)-((Integer.parseInt((operand2.split("_")[1]).split("/")[0])))); 
+        		
+        	}
+        	//numerator2 = (((Integer.parseInt((operand2.split("_")[1]).split("/")[0])))+ denominator2*wholenum2); //multiply by wholenum3 for checkpoint3
+        	frac2[0]= numerator2;
         }
         else if (operand2.contains("/")) {
         	numerator2 = Integer.parseInt(operand2.split("/")[0]);
@@ -66,6 +84,7 @@ public class FracCalc {
         }
         else {
         	wholenum2 = Integer.parseInt(operand2);
+        	numerator2 = Integer.parseInt(operand2);
         }
        
        //CHECK AND CHOOSE OPERATIONS
@@ -81,15 +100,15 @@ public class FracCalc {
        else if(operation.equals("/")) {
     	   answer = (division(numerator1,numerator2,denominator1,denominator2));
        }
-        
-        return ("whole:"+ wholenum2 + " numerator:" + numerator2 + " denominator:" + denominator2);
+        return (answer);
+        //return ("whole:"+ wholenum1 + " numerator:" + numerator1 + " denominator:" + denominator1);
     }
     // TODO: Fill in the space below with any helper methods that you think you will need
     public static String addition (int numerator1, int numerator2,int denominator1, int denominator2) {
     	int m1 =(lcm(denominator1,denominator2))/denominator1;
     	int m2 =(lcm(denominator1,denominator2))/denominator2;
     	int newnumerator = ((numerator1*m1)+(numerator2*m2));
-    	String answer = toMix(reduce(newnumerator + "/" + (lcm(denominator1,denominator2))));
+    	String answer = (newnumerator + "/" + (lcm(denominator1,denominator2)));
     	return answer;
     }
     
@@ -97,30 +116,32 @@ public class FracCalc {
     	int m1 =(lcm(denominator1,denominator2))/denominator1;
     	int m2 =(lcm(denominator1,denominator2))/denominator2;
     	int newnumerator = ((numerator1*m1)-(numerator2*m2));
-    	String answer = toMix(reduce(newnumerator + "/" + (lcm(denominator1,denominator2))));
+    	String answer = (newnumerator + "/" + (lcm(denominator1,denominator2)));
     	return answer;
     }
     
     public static String multiplication (int numerator1, int numerator2, int denominator1, int denominator2) {
     	int newnumerator = numerator1*numerator2;
     	int newdenominator = denominator1*denominator2;
-    	String answer = toMix(reduce(newnumerator + "/" + newdenominator));
+    	String answer = (newnumerator + "/" + newdenominator);
     	return answer;
     }
     
     public static String division (int numerator1, int numerator2, int denominator1, int denominator2) {
     	int newnumerator = numerator1*denominator2;
     	int newdenominator = denominator1*numerator2;
-    	String answer = toMix(reduce(newnumerator + "/" + newdenominator));
+    	String answer = (newnumerator + "/" + newdenominator);
     	return answer;
     }
     
     public static int lcm(int denominator1, int denominator2) {
-    	int multiply = 2;
-    	while((denominator1*multiply)%denominator2 !=0) {
-    		multiply++;
+    	int multiply = 1;
+    	if(denominator1 != denominator2) {
+    		while((denominator1*multiply)%denominator2 !=0) {
+    			multiply++;
+    		}
     	}
-    	return (denominator1*multiply);
+    		return (denominator1*multiply);
     }
     
     public static String reduce(String input) {	
