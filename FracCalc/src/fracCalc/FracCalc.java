@@ -29,30 +29,48 @@ public class FracCalc {
     public static String produceAnswer(String input)
     { 
         // TODO: Implement this function to produce the solution to the input
+    	// VARIABLES
         String operand1 = (input.split(" "))[0];
         String operation = (input.split(" "))[1];
         String operand2 = (input.split(" "))[2];
-        String wholenum2 = "0";
-        String numerator2 = "0";
-        String denominator2 = "1";
-        int condition1 = operand2.indexOf("_");
-        int condition2 = operand2.indexOf("/");
-        if (condition1 > -1) {
-        	wholenum2 = operand2.split("_")[0];
-        	numerator2 = (operand2.split("_")[1]).split("/")[0];
-        	denominator2 = (operand2.split("_")[1]).split("/")[1];
+        int wholenum1 = 0;
+        int numerator1 = 0;
+        int denominator1 = 1;
+        int wholenum2 = 0;
+        int numerator2 = 0;
+        int denominator2 = 1;
+        
+        //Seperating the fraction of operand1
+        if (operand1.contains("_")) {
+        	wholenum1 = Integer.parseInt(operand1.split("_")[0]);
+        	numerator1 = Integer.parseInt((operand1.split("_")[1]).split("/")[0]);
+        	denominator1 = Integer.parseInt((operand1.split("_")[1]).split("/")[1]);
+        }
+        else if (operand1.contains("/")) {
+        	numerator1 = Integer.parseInt(operand1.split("/")[0]);
+    		denominator1 = Integer.parseInt(operand1.split("/")[1]);
+        }
+        else {
+        	wholenum1 = Integer.parseInt(operand1);
+        }
+        System.out.println("whole:"+ wholenum1 + " numerator:" + numerator1 + " denominator:" + denominator1);
+        
+        //Seperating the fraction of operand2
+        if (operand2.contains("_")) {
+        	wholenum2 = Integer.parseInt(operand2.split("_")[0]);
+        	numerator2 = Integer.parseInt((operand2.split("_")[1]).split("/")[0]);
+        	denominator2 = Integer.parseInt((operand2.split("_")[1]).split("/")[1]);
+        }
+        else if (operand2.contains("/")) {
+        	numerator2 = Integer.parseInt(operand2.split("/")[0]);
+    		denominator2 = Integer.parseInt(operand2.split("/")[1]);
+        }
+        else {
+        	wholenum2 = Integer.parseInt(operand2);
         }
         
-        else {
-        	if(condition2 > -1) {
-         		numerator2 = operand2.split("/")[0];
-        		denominator2 = operand2.split("/")[1];
-        	}
-        	else {
-        		wholenum2 = operand2;
-        	}
-        }
         return ("whole:"+ wholenum2 + " numerator:" + numerator2 + " denominator:" + denominator2);
     }
     // TODO: Fill in the space below with any helper methods that you think you will need
+
 }
