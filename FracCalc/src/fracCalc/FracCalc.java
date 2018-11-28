@@ -39,7 +39,7 @@ public class FracCalc {
         int wholenum2 = 0;
         int numerator2 = 0;
         int denominator2 = 1;
-        
+        String answer = "";
         //SEPERATES OPERAND1 INTO WHOLEN NUMBER, NUMERATOR, AND DENOMINATOR
         if (operand1.contains("_")) {
         	wholenum1 = Integer.parseInt(operand1.split("_")[0]);
@@ -68,14 +68,18 @@ public class FracCalc {
         	wholenum2 = Integer.parseInt(operand2);
         }
         
-        /*
-        int m1 = 2;
-        int m2 = 2;
-        while(((denominator1*m1)%denominator2)!= 0) {
-        	m1+=1;
-        }
-        m2 = ((denominator1*m1)/denominator2);
-        numerator1 = numerator1*m1;*/
+       if (operation.equals("+")){
+    		   
+       }
+       else if(operation.equals("-")) {
+    	   
+       }
+       else if(operation.equals("*")) {
+    	   
+       }
+       else if(operation.equals("/")) {
+    	   
+       }
         
         return ("whole:"+ wholenum2 + " numerator:" + numerator2 + " denominator:" + denominator2);
     }
