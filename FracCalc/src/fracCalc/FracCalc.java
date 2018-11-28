@@ -73,13 +73,13 @@ public class FracCalc {
     	   answer = (addition(numerator1,numerator2,denominator1,denominator2));
        }
        else if(operation.equals("-")) {
-    	   
+    	   answer = (subtraction(numerator1,numerator2,denominator1,denominator2));
        }
        else if(operation.equals("*")) {
-    	   
+    	   answer = (multiplication(numerator1,numerator2,denominator1,denominator2));
        }
        else if(operation.equals("/")) {
-    	   
+    	   answer = (division(numerator1,numerator2,denominator1,denominator2));
        }
         
         return ("whole:"+ wholenum2 + " numerator:" + numerator2 + " denominator:" + denominator2);
@@ -89,26 +89,30 @@ public class FracCalc {
     	int m1 =(lcm(denominator1,denominator2))/denominator1;
     	int m2 =(lcm(denominator1,denominator2))/denominator2;
     	int newnumerator = ((numerator1*m1)+(numerator2*m2));
-    	return (newnumerator + "/" + (lcm(denominator1,denominator2)));
+    	String answer = toMix(reduce(newnumerator + "/" + (lcm(denominator1,denominator2))));
+    	return answer;
     }
     
     public static String subtraction (int numerator1, int numerator2,int denominator1, int denominator2) {
     	int m1 =(lcm(denominator1,denominator2))/denominator1;
     	int m2 =(lcm(denominator1,denominator2))/denominator2;
     	int newnumerator = ((numerator1*m1)-(numerator2*m2));
-    	return (newnumerator + "/" + (lcm(denominator1,denominator2)));
+    	String answer = toMix(reduce(newnumerator + "/" + (lcm(denominator1,denominator2))));
+    	return answer;
     }
     
     public static String multiplication (int numerator1, int numerator2, int denominator1, int denominator2) {
     	int newnumerator = numerator1*numerator2;
     	int newdenominator = denominator1*denominator2;
-    	return (newnumerator + "/" + newdenominator);
+    	String answer = toMix(reduce(newnumerator + "/" + newdenominator));
+    	return answer;
     }
     
     public static String division (int numerator1, int numerator2, int denominator1, int denominator2) {
     	int newnumerator = numerator1*denominator2;
     	int newdenominator = denominator1*numerator2;
-    	return (newnumerator + "/" + newdenominator);
+    	String answer = toMix(reduce(newnumerator + "/" + newdenominator));
+    	return answer;
     }
     
     public static int lcm(int denominator1, int denominator2) {
@@ -139,6 +143,14 @@ public class FracCalc {
     	int newdenominator = Integer.parseInt(input.split("/")[1]);
     	int wholenum = (newnumerator/newdenominator);
     	int remainder = (newnumerator%newdenominator);
-    	return ( wholenum + "_" + remainder +"/" + newdenominator);
+    	if(wholenum == 0) {
+    		return(remainder+"/"+newdenominator);
+    	}
+    	else if(remainder == 0) {
+    		return(Integer.toString(wholenum));
+    	}
+    	else {
+    		return ( wholenum + "_" + remainder +"/" + newdenominator);
+    	}
     }
 }
