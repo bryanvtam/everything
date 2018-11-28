@@ -54,6 +54,7 @@ public class FracCalc {
         		
         	}
         	frac1[0] = numerator1;
+        	frac2[1] = denominator1;
         }
         else if (operand1.contains("/")) {
         	numerator1 = Integer.parseInt(operand1.split("/")[0]);
@@ -76,7 +77,8 @@ public class FracCalc {
         		
         	}
         	//numerator2 = (((Integer.parseInt((operand2.split("_")[1]).split("/")[0])))+ denominator2*wholenum2); //multiply by wholenum3 for checkpoint3
-        	frac2[0]= numerator2;
+        	frac2[0] = numerator2;
+        	frac2[1] = denominator2;
         }
         else if (operand2.contains("/")) {
         	numerator2 = Integer.parseInt(operand2.split("/")[0]);
@@ -108,7 +110,7 @@ public class FracCalc {
     	int m1 =(lcm(denominator1,denominator2))/denominator1;
     	int m2 =(lcm(denominator1,denominator2))/denominator2;
     	int newnumerator = ((numerator1*m1)+(numerator2*m2));
-    	String answer = (newnumerator + "/" + (lcm(denominator1,denominator2)));
+    	String answer = toMix(newnumerator + "/" + (lcm(denominator1,denominator2)));
     	return answer;
     }
     
