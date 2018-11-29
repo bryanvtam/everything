@@ -33,36 +33,39 @@ public class FracCalc {
         String operand1 = (input.split(" "))[0];
         String operation = (input.split(" "))[1];
         String operand2 = (input.split(" "))[2];
-        int wholenum1 = 0;
-        int numerator1 = 0;
-        int denominator1 = 1;
+        int wholeN1 = 0;
+        int numer1 = 0;
+        int deno1 = 1;
         int wholenum2 = 0;
         int numerator2 = 0;
         int denominator2 = 1;
-        int[] frac1 = {numerator1,denominator1};
+        int[] frac1 = {numer1,deno1};
         int[] frac2 = {numerator2, denominator2};
         String answer = "";
         //SEPERATES OPERAND1 INTO WHOLEN NUMBER, NUMERATOR, AND DENOMINATOR
         if (operand1.contains("_")) {
-        	wholenum1 = Integer.parseInt(operand1.split("_")[0]);
-        	denominator1 = Integer.parseInt((operand1.split("_")[1]).split("/")[1]);
-        	if (wholenum1 > 0) {
-        		numerator1 = (((Integer.parseInt((operand1.split("_")[1]).split("/")[0]))) + (denominator1)*wholenum1); 
+        	wholeN1 = Integer.parseInt(operand1.split("_")[0]);
+        	deno1 = Integer.parseInt((operand1.split("_")[1]).split("/")[1]);
+        	
+        	frac1[1] = Integer.parseInt((operand1.split("_")[1]).split("/")[1]);
+        	
+        	if (wholeN1 > 0) {
+        		numer1 = (((Integer.parseInt((operand1.split("_")[1]).split("/")[0]))) + (deno1)*wholeN1); 
         	}
-        	else if (wholenum1 < 0) {
-        		numerator1 = (((denominator1)*wholenum1)-((Integer.parseInt((operand1.split("_")[1]).split("/")[0])))); 
+        	else if (wholeN1 < 0) {
+        		numer1 = (((deno1)*wholeN1)-((Integer.parseInt((operand1.split("_")[1]).split("/")[0])))); 
         		
         	}
-        	frac1[0] = numerator1;
-        	frac2[1] = denominator1;
+        	frac1[0] = numer1;
+        	frac2[1] = deno1;
         }
         else if (operand1.contains("/")) {
-        	numerator1 = Integer.parseInt(operand1.split("/")[0]);
-    		denominator1 = Integer.parseInt(operand1.split("/")[1]);
+        	numer1 = Integer.parseInt(operand1.split("/")[0]);
+    		deno1 = Integer.parseInt(operand1.split("/")[1]);
         }
         else {
-        	numerator1 = Integer.parseInt(operand1);
-        	wholenum1 = Integer.parseInt(operand1);
+        	numer1 = Integer.parseInt(operand1);
+        	wholeN1 = Integer.parseInt(operand1);
         }
         
         //SEPERATES OPERAND2 INTO WHOLEN NUMBER, NUMERATOR, AND DENOMINATOR
@@ -91,16 +94,16 @@ public class FracCalc {
        
        //CHECK AND CHOOSE OPERATIONS
        if (operation.equals("+")){
-    	   answer = (addition(numerator1,numerator2,denominator1,denominator2));
+    	   answer = (addition(numer1,numerator2,deno1,denominator2));
        }
        else if(operation.equals("-")) {
-    	   answer = (subtraction(numerator1,numerator2,denominator1,denominator2));
+    	   answer = (subtraction(numer1,numerator2,deno1,denominator2));
        }
        else if(operation.equals("*")) {
-    	   answer = (multiplication(numerator1,numerator2,denominator1,denominator2));
+    	   answer = (multiplication(numer1,numerator2,deno1,denominator2));
        }
        else if(operation.equals("/")) {
-    	   answer = (division(numerator1,numerator2,denominator1,denominator2));
+    	   answer = (division(numer1,numerator2,deno1,denominator2));
        }
         return (answer);
         //return ("whole:"+ wholenum1 + " numerator:" + numerator1 + " denominator:" + denominator1);
