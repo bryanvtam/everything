@@ -110,7 +110,7 @@ public class FracCalc {
     	int m1 =(lcm(denominator1,denominator2))/denominator1;
     	int m2 =(lcm(denominator1,denominator2))/denominator2;
     	int newnumerator = ((numerator1*m1)+(numerator2*m2));
-    	String answer = toMix(newnumerator + "/" + (lcm(denominator1,denominator2)));
+    	String answer = toMix(reduce(newnumerator + "/" + (lcm(denominator1,denominator2))));
     	return answer;
     }
     
@@ -118,21 +118,21 @@ public class FracCalc {
     	int m1 =(lcm(denominator1,denominator2))/denominator1;
     	int m2 =(lcm(denominator1,denominator2))/denominator2;
     	int newnumerator = ((numerator1*m1)-(numerator2*m2));
-    	String answer = (newnumerator + "/" + (lcm(denominator1,denominator2)));
+    	String answer = toMix(reduce(newnumerator + "/" + (lcm(denominator1,denominator2))));
     	return answer;
     }
     
     public static String multiplication (int numerator1, int numerator2, int denominator1, int denominator2) {
     	int newnumerator = numerator1*numerator2;
     	int newdenominator = denominator1*denominator2;
-    	String answer = (newnumerator + "/" + newdenominator);
+    	String answer = toMix(reduce(newnumerator + "/" + newdenominator));
     	return answer;
     }
     
     public static String division (int numerator1, int numerator2, int denominator1, int denominator2) {
     	int newnumerator = numerator1*denominator2;
     	int newdenominator = denominator1*numerator2;
-    	String answer = (newnumerator + "/" + newdenominator);
+    	String answer = toMix(reduce(newnumerator + "/" + newdenominator));
     	return answer;
     }
     
@@ -166,11 +166,20 @@ public class FracCalc {
     	int newdenominator = Integer.parseInt(input.split("/")[1]);
     	int wholenum = (newnumerator/newdenominator);
     	int remainder = (newnumerator%newdenominator);
-    	if(wholenum == 0) {
-    		return(remainder+"/"+newdenominator);
+    	if(newdenominator<0) {
+    		newdenominator = newdenominator*(-1);
+    		newnumerator = newnumerator*(-1);
     	}
-    	else if(remainder == 0) {
-    		return(Integer.toString(wholenum));
+    	if (remainder <0) {
+    		remainder = remainder*(-1);
+    	}
+    	if(wholenum == 0) {
+    		if(remainder == 0) {
+    			return(Integer.toString(wholenum));
+    		}
+    		else {
+    		return(remainder+"/"+newdenominator);
+    		}
     	}
     	else {
     		return ( wholenum + "_" + remainder +"/" + newdenominator);
