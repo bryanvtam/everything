@@ -188,4 +188,80 @@ public class FracCalc {
     		return ( wholenum + "_" + remainder +"/" + newdenominator);
     	}
     }
+    
+   //=========================================================== METHODS USING ARRAYS, GCD STAYS THE SAME =========================================================================
+    
+    public static int[] addition (int[] frac1 , int[] frac2) {
+    	int[] answer = new int[2];
+    	answer[1]=lcm(frac1[1],frac2[1]);
+    	answer[0]=(frac1[0]*(answer[1]/frac1[1])) + (frac2[0]*(answer[1]/frac2[1]));
+
+    	return answer;
+    }
+    
+    public static int[] subtraction(int[] frac1, int[] frac2) {
+    	int[] answer = new int[2];
+    	answer[1]=lcm(frac1[1],frac2[1]);
+    	answer[0]=(frac1[0]*(answer[1]/frac1[1])) - (frac2[0]*(answer[1]/frac2[1]));
+
+    	return answer;
+    }
+    
+    public static int[] multiplication(int[] frac1, int[] frac2) {
+    	int[] answer = new int[2];
+    	answer[0] = frac1[0] * frac2[0];
+    	answer[1] = frac1[1] * frac2[1];
+    	
+    	return answer;
+    }
+    
+    public static int[] division(int[] frac1, int[] frac2) {
+    	int[] answer = new int[2];
+    	answer[0] = frac1[0] * frac2[1];
+    	answer[0] = frac1[1] * frac2[0];
+    	
+    	return answer;
+    }
+    
+    public static int[] reduce(int[]input) {
+    	int divide =gcd(input[0],input[1]);
+    	int[] answer = {(input[0]/divide), (input[1]/divide)};
+    	return answer;
+    }
+    
+    public static String toMixnum(int[]reducedfrac) {
+    	int numerator = reducedfrac[0];
+    	int denominator = reducedfrac[1];
+    	int remainder = (numerator%denominator);
+    	int wholenum = (numerator/denominator);
+    	String answer = "";
+    	if (wholenum == 0) {
+    		if (denominator < 0) {
+    			denominator *= (-1);
+    			numerator *= (-1);
+    			answer = (numerator + "/" + denominator);
+    		}
+    		else if(numerator == 0) {
+    			answer =  "0";
+    		}
+    		else {
+    			answer = (numerator + "/" + denominator);
+    		}
+    	}
+    	else {
+    		if(numerator < 0 ) {
+    			numerator *= (-1);
+    			answer = (wholenum + "_" + numerator + "/" + denominator);
+    		}
+    		else if (denominator < 0) {
+    			denominator *= (-1);
+    			answer = (wholenum + "_" + numerator + "/" + denominator);
+    		}
+    		else if(numerator == 0) {
+    			answer =  Integer.toString(wholenum);
+    		}
+    	}  
+    	return answer;
+    }
+    
 }
