@@ -42,6 +42,7 @@ public class FracCalc {
         int[] frac1 = {numer1,deno1};
         int[] frac2 = {numerator2, denominator2};
         String answer = "";
+        int[] answers = new int[2];
         //SEPERATES OPERAND1 INTO WHOLEN NUMBER, NUMERATOR, AND DENOMINATOR
         if (operand1.contains("_")) {
         	wholeN1 = Integer.parseInt(operand1.split("_")[0]);
@@ -95,15 +96,19 @@ public class FracCalc {
        //CHECK AND CHOOSE OPERATIONS
        if (operation.equals("+")){
     	   answer = (addition(numer1,numerator2,deno1,denominator2));
+    	   answers = addition(frac1, frac2);
        }
        else if(operation.equals("-")) {
     	   answer = (subtraction(numer1,numerator2,deno1,denominator2));
+    	   answers = subtraction(frac1, frac2);
        }
        else if(operation.equals("*")) {
     	   answer = (multiplication(numer1,numerator2,deno1,denominator2));
+    	   answers = multiplication(frac1,frac2);
        }
        else if(operation.equals("/")) {
     	   answer = (division(numer1,numerator2,deno1,denominator2));
+    	   answers = division(frac1,frac2);
        }
         return (answer);
         //return ("whole:"+ wholenum1 + " numerator:" + numerator1 + " denominator:" + denominator1);
