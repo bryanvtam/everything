@@ -38,7 +38,7 @@ public class FracCalc {
         int[] frac1 = {0,1};
         int[] frac2 = {0, 1};
         String answer = "";
-        //SEPERATES OPERAND1 INTO WHOLEN NUMBER, NUMERATOR, AND DENOMINATOR
+        //SEPERATES OPERAND1 INTO WHOLEN NUMBER, NUMERATOR, & DENOMINATOR
         
         if(operand1.contains("_") ) { //checks if it is a mixed number
         	wholeN1 = Integer.parseInt(operand1.split("_")[0]); //gets the whole number of operand1
