@@ -149,7 +149,7 @@ public class FracCalc {
     	return answer; //returns the reduced fraction
     }
     
-    public static String toMixnum(int[]reducedfrac) {
+    public static String toMixnum(int[]reducedfrac) {//mixed number method
     	int numerator = reducedfrac[0];
     	int denominator = reducedfrac[1];    	
     	int mixedwholeNum = (numerator/denominator);
