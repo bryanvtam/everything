@@ -84,22 +84,13 @@ public class FracCalc {
         		frac2[1] = 1; //sets frac2 denominator to 1
         	}
         }
-
      
        //CHECK AND CHOOSE OPERATIONS
        if (operation.equals("+")){
-<<<<<<< HEAD
     	   answer = toMixnum(reduce(addition(frac1,frac2)));
-=======
-    	   answer = toMixnum(reduce(addition(frac1, frac2)));
->>>>>>> branch 'master' of https://github.com/bryanvtam/everything.git
        }
        else if(operation.equals("-")) {
-<<<<<<< HEAD
     	   answer = toMixnum(reduce(subtraction(frac1,frac2)));
-=======
-    	   answer = toMixnum(reduce(subtraction(frac1, frac2)));
->>>>>>> branch 'master' of https://github.com/bryanvtam/everything.git
        }
        else if(operation.equals("*")) {
     	   answer = toMixnum(reduce(multiplication(frac1,frac2)));
@@ -109,42 +100,20 @@ public class FracCalc {
        }
         return (answer);
     }
-<<<<<<< HEAD
     // TODO: Fill in the space below with any helper methods that you think you will need
    //=========== METHODS USING ARRAYS =========================
     
-=======
-   //================================ METHODS USING ARRAYS, GCD STAYS THE SAME =========================================================================
-    public static int gcd(int a, int b) {
-    	if(b == 0) {
-    		return a;
-    	}
-    	return gcd(b, a%b);
-    }
->>>>>>> branch 'master' of https://github.com/bryanvtam/everything.git
     public static int[] addition (int[] frac1 , int[] frac2) {
     	int[] answer = new int[2];
-<<<<<<< HEAD
-    	answer[1]=(frac1[0]*frac2[1]) + (frac2[0] * frac1[1]);
-    	answer[0]=(frac1[1] * frac2[1]);
-=======
-    	answer[0] = (frac1[0] * frac2[1]) + (frac2[0] + frac1[1]);
-    	answer[1] = (frac1[1] * frac2[1]);
->>>>>>> branch 'master' of https://github.com/bryanvtam/everything.git
-
+    	answer[0]=(frac1[0]*frac2[1]) + (frac2[0] * frac1[1]);
+    	answer[1]=(frac1[1] * frac2[1]);
     	return answer;
     }
     
     public static int[] subtraction(int[] frac1, int[] frac2) {
     	int[] answer = new int[2];
-<<<<<<< HEAD
-    	answer[1]=(frac1[0] * frac2[1]) - (frac2[0] * frac1[1]);
-    	answer[0]=(frac1[1] * frac2[1]);
-=======
-    	answer[0] = (frac1[0] * frac2[1])- (frac2[0] * frac1[1]);
-    	answer[1] = (frac1[1] * frac2[1]);
->>>>>>> branch 'master' of https://github.com/bryanvtam/everything.git
-
+    	answer[0]=(frac1[0] * frac2[1]) - (frac2[0] * frac1[1]);
+    	answer[1]=(frac1[1] * frac2[1]);
     	return answer;
     }
     
@@ -159,7 +128,7 @@ public class FracCalc {
     public static int[] division(int[] frac1, int[] frac2) {
     	int[] answer = new int[2];
     	answer[0] = frac1[0] * frac2[1];
-    	answer[0] = frac1[1] * frac2[0];
+    	answer[1] = frac1[1] * frac2[0];
     	
     	return answer;
     }
@@ -179,58 +148,38 @@ public class FracCalc {
     
     public static String toMixnum(int[]reducedfrac) {//mixed number method
     	int numerator = reducedfrac[0];
-<<<<<<< HEAD
-    	int denominator = reducedfrac[1];    	
+    	int denominator = reducedfrac[1];    
+    	
     	int mixedwholeNum = (numerator/denominator);
     	int remainder = (numerator%denominator);
-=======
-    	int denominator = reducedfrac[1];
-    	
-    	if (denominator < 0) {
-    		numerator *= (-1);
-    		denominator *= (-1);
-    	}
-    	
-    	int remainder = numerator % denominator;
-    	int wholenum = numerator/denominator;
->>>>>>> branch 'master' of https://github.com/bryanvtam/everything.git
     	String answer = "";
-    	
-<<<<<<< HEAD
-    	if(remainder < 0) {
-    		remainder *= (-1);
+    	if(denominator < 0) {
+    		numerator *=(-1);
+    		denominator*=(-1);
     	}
 
+
     	if(mixedwholeNum == 0) {
-    		answer = (numerator + "/" + denominator);
-=======
-    	if(numerator != 0) {
-    		if (wholenum != 0) {
-    			if(remainder == 0 ) {
-    				answer = Integer.toString(wholenum);
-    			}
-    			else if(remainder < 0) {
-    				remainder *= (-1);
-    				answer = (wholenum + "_" + remainder +"/" + denominator);
-    			}
-    		}
-    		else {
-    			answer = (remainder + "/" + denominator);
-    		}
->>>>>>> branch 'master' of https://github.com/bryanvtam/everything.git
-    	}
-    	else {
-<<<<<<< HEAD
     		if(remainder == 0) {
     			answer = Integer.toString(mixedwholeNum);
     		}
     		else {
+    			
+    			answer = (remainder + "/" + denominator);
+    		}
+    	}
+    	else {
+    		if(remainder == 0) {
+    			answer = Integer.toString(mixedwholeNum);
+    		}
+    		else {
+    			if (remainder < 0) {
+    				remainder *= (-1);
+    			}
     			answer = (mixedwholeNum + "_" + remainder + "/" + denominator);
     		}
-=======
-    		answer = "0";
->>>>>>> branch 'master' of https://github.com/bryanvtam/everything.git
     	}
+    	
     	
     	return answer;
     }
