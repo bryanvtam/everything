@@ -25,21 +25,19 @@ public class ArraysLab3 {
 	}
 	public static int[] append(int[] arr, int num) {
 		int[] holder = new int[(arr.length+1)];
-		for (int i = 0; i < holder.length; i++) {
+		for (int i = 0; i < arr.length; i++) {
 			holder[i] = arr[i];
 		}
-		holder[holder.length] = num;
+		holder[holder.length-1] = num;
 		return holder;
 	}
-	public static int[] remove ( int[] arr, int idx) {
+	public static int[] remove ( int[] arr, int idx) { // accepts an array of ints and removes a specific index
 		int[] holder = new int[arr.length-1];
-		for (int i = 0; i <arr.length; i++) {
-			if (i < idx){
-				holder[i] = arr[i];
+		for (int i = 0; i <holder.length; i++) {
+			if (i == idx){
+				i++;
 			}
-			else {
-			holder[i] = arr[i+1];
-			}
+			holder[i] = arr[i];
 		}
 		return holder;
 	}
